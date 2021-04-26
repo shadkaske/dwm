@@ -11,8 +11,8 @@ static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int focusonwheel       = 0;
-static const char *fonts[]          = { "JetBrainsMono Nerd Font:size=10" };
-static const char dmenufont[]       = "JetBrainsMono Nerd Font:size=10";
+static const char *fonts[]          = { "JetBrainsMono Nerd Font:size=11" };
+static const char dmenufont[]       = "JetBrainsMono Nerd Font:size=11";
 static const char col_gray1[]       = "#2E3440"; /* color00 */
 static const char col_gray2[]       = "#4C566A"; /* color08 */
 static const char col_gray3[]       = "#E5E9F0"; /* color07 */
@@ -33,10 +33,10 @@ static const char *const autostart[] = {
     "volumeicon", NULL,
     "sxhkd", NULL,
     "lxpolkit", NULL,
+    "lxsession", NULL,
     "udiskie", NULL,
     "dunst", NULL,
     "picom", NULL,
-    "feh", "--bg-fill", "--randomize", "~/.local/share/wallpapers/", NULL,
     "slstatus", NULL,
 	NULL /* terminate */
 };
@@ -50,12 +50,20 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor    scratch key */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1,        0  },
-	{ "firefox",  NULL,       NULL,       1 << 8,       0,           -1,        0  },
-	{ NULL,       NULL,   "scratchpad",   0,            1,           -1,       's' },
-	{ NULL,       NULL,   "musicmanager", 0,            1,           -1,       'm' },
-	{ NULL,       NULL,   "quickedit",    0,            1,           -1,       'e' },
+	/* class              instance                      title       tags mask     isfloating   monitor    scratch key */
+	{ "Gimp",             NULL,                         NULL,       0,            1,           -1,        0  },
+	{ "Arandr",           NULL,                         NULL,       0,            1,           -1,        0  },
+	{ NULL,               NULL,    "Virtual Machine Manager",       0,            1,           -1,        0  },
+	{ NULL,     "virt-manager",      "Windows10 on QEMU/KVM",       1 << 7,       0,           -1,        0  },
+	{ "qutebrowser",      NULL,                         NULL,       1 << 2,       0,           -1,        0  },
+	{ "DBeaver",          NULL,                         NULL,       1 << 6,       0,            1,        0  },
+	{ "Google-chrome",    NULL,                         NULL,       1 << 2,       0,           -1,        0  },
+	{ "firefox",          NULL,                         NULL,       1 << 1,       0,           -1,        0  },
+	{ "Emacs",            NULL,                         NULL,       1 << 3,       0,           -1,        0  },
+	{ "teams-for-linux",  NULL,                         NULL,       1 << 3,       0,            1,        0  },
+	{ NULL,               NULL,                     "scratchpad",   0,            1,           -1,       's' },
+	{ NULL,               NULL,                     "musicmanager", 0,            1,           -1,       'm' },
+	{ NULL,               NULL,                     "quickedit",    0,            1,           -1,       'e' },
 };
 
 /* layout(s) */
