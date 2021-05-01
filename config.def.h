@@ -25,18 +25,17 @@ static const char *colors[][3]      = {
 };
 
 static const char *const autostart[] = {
-	"setxkbmap", "-option", "ctrl:nocaps", NULL,
-    "nm-applet", NULL,
-    "greenclip", "daemon", NULL,
-    "unclutter", "-idle", "5", NULL,
-    "xfce4-power-manager", "--sm-client-disable", NULL,
-    "volumeicon", NULL,
+	/* "setxkbmap", "-option", "ctrl:nocaps", NULL, */
+    /* "nm-applet", NULL, */
+    /* "greenclip", "daemon", NULL, */
+    /* "unclutter", "-idle", "5", NULL, */
+    /* "volumeicon", NULL, */
     "sxhkd", NULL,
-    "lxpolkit", NULL,
-    "lxsession", NULL,
-    "udiskie", NULL,
-    "dunst", NULL,
-    "picom", NULL,
+    /* "lxpolkit", NULL, */
+    /* "lxsession", NULL, */
+    /* "dunst", NULL, */
+    /* "udiskie", NULL, */
+    /* "picom", NULL, */
     "slstatus", NULL,
 	NULL /* terminate */
 };
@@ -50,20 +49,21 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class              instance                      title       tags mask     isfloating   monitor    scratch key */
-	{ "Gimp",             NULL,                         NULL,       0,            1,           -1,        0  },
-	{ "Arandr",           NULL,                         NULL,       0,            1,           -1,        0  },
-	{ NULL,               NULL,    "Virtual Machine Manager",       0,            1,           -1,        0  },
-	{ NULL,     "virt-manager",      "Windows10 on QEMU/KVM",       1 << 7,       0,           -1,        0  },
-	{ "qutebrowser",      NULL,                         NULL,       1 << 2,       0,           -1,        0  },
-	{ "DBeaver",          NULL,                         NULL,       1 << 6,       0,            1,        0  },
-	{ "Google-chrome",    NULL,                         NULL,       1 << 2,       0,           -1,        0  },
-	{ "firefox",          NULL,                         NULL,       1 << 1,       0,           -1,        0  },
-	{ "Emacs",            NULL,                         NULL,       1 << 3,       0,           -1,        0  },
-	{ "teams-for-linux",  NULL,                         NULL,       1 << 3,       0,            1,        0  },
-	{ NULL,               NULL,                     "scratchpad",   0,            1,           -1,       's' },
-	{ NULL,               NULL,                     "musicmanager", 0,            1,           -1,       'm' },
-	{ NULL,               NULL,                     "quickedit",    0,            1,           -1,       'e' },
+	/* class                                  instance                            title       tags mask     isfloating   monitor    scratch key */
+	{ "Gimp",                                 NULL,                               NULL,       0,            1,           -1,        0  },
+	{ "Arandr",                               NULL,                               NULL,       0,            1,           -1,        0  },
+	{ NULL,                                   NULL,          "Virtual Machine Manager",       0,            1,           -1,        0  },
+	{ NULL,                                   NULL,    "Remmina Remote Desktop Client",       0,            1,           -1,        0  },
+	{ NULL,                         "virt-manager",            "Windows10 on QEMU/KVM",       1 << 7,       0,           -1,        0  },
+	{ "qutebrowser",                          NULL,                               NULL,       1 << 2,       0,           -1,        0  },
+	{ "DBeaver",                              NULL,                               NULL,       1 << 6,       0,            1,        0  },
+	{ "Google-chrome",                        NULL,                               NULL,       1 << 2,       0,           -1,        0  },
+	{ "firefox",                              NULL,                               NULL,       1 << 1,       0,           -1,        0  },
+	{ "Emacs",                                NULL,                               NULL,       1 << 3,       0,           -1,        0  },
+	{ "teams-for-linux",                      NULL,                               NULL,       1 << 3,       0,            1,        0  },
+	{ NULL,                                   NULL,                       "scratchpad",       0,            1,           -1,       's' },
+	{ NULL,                                   NULL,                     "musicmanager",       0,            1,           -1,       'm' },
+	{ NULL,                                   NULL,                        "quickedit",       0,            1,           -1,       'e' },
 };
 
 /* layout(s) */
@@ -93,7 +93,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *scratchpadcmd[] = {"s", "st", "-t", "scratchpad", "-e", "tmux", "new-session", "-A", "-s", "Scratch", NULL};
+static const char *scratchpadcmd[] = {"s", "st", "-t", "scratchpad", "-e", "scratchpad", NULL};
 static const char *musicmanager[]  = {"m", "st", "-t", "musicmanager", "-e", "ncmpcpp"};
 static const char *quickedit[]     = {"e", "st", "-t", "quickedit", "-e", "nvim"};
 
