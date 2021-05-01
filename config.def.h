@@ -14,10 +14,10 @@ static const int focusonwheel       = 0;
 static const char *fonts[]          = { "JetBrainsMono Nerd Font:size=11" };
 static const char dmenufont[]       = "JetBrainsMono Nerd Font:size=11";
 static const char col_gray1[]       = "#2E3440"; /* color00 */
-static const char col_gray2[]       = "#4C566A"; /* color08 */
-static const char col_gray3[]       = "#E5E9F0"; /* color07 */
-static const char col_gray4[]       = "#FFFFFF"; /* color15 */
-static const char col_cyan[]        = "#BF616A"; /* color04 */
+static const char col_gray2[]       = "#D8DEE9"; /* color08 */
+static const char col_gray3[]       = "#D8DEE9"; /* color07 */
+static const char col_gray4[]       = "#2e3440"; /* color15 */
+static const char col_cyan[]        = "#88C0D0"; /* color04 */
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
