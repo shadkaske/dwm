@@ -37,6 +37,7 @@ static const char *const autostart[] = {
     "dunst", NULL,
     "udiskie", NULL,
     "picom", NULL,
+    "wmname", "LG3D", NULL,
     "slstatus", NULL,
 	NULL /* terminate */
 };
