@@ -13,8 +13,8 @@ static int topbar             = 1;        /* 0 means bottom bar */
 static const int focusonwheel       = 0;
 /* static const char *fonts[]          = { "JetBrainsMono Nerd Font:size=11" }; */
 /* static const char dmenufont[]       = "JetBrainsMono Nerd Font:size=11"; */
-static char font[]            = "monospace:size=10";
-static char dmenufont[]       = "monospace:size=10";
+static char font[]            = "JetBrainsMono Nerd Font:size=11";
+static char dmenufont[]       = "JetBrainsMono Nerd Font:size=11";
 static const char *fonts[]          = { font };
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
@@ -96,7 +96,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-i", "-m", dmenumon, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *scratchpadcmd[] = {"s", "st", "-t", "scratchpad", "-e", "scratchpad", NULL};
 static const char *musicmanager[]  = {"m", "st", "-t", "musicmanager", "-e", "ncmpcpp"};
