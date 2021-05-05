@@ -26,17 +26,17 @@ static const char *colors[][3]      = {
 };
 
 static const char *const autostart[] = {
-	/* "setxkbmap", "-option", "ctrl:nocaps", NULL, */
-    /* "nm-applet", NULL, */
-    /* "greenclip", "daemon", NULL, */
-    /* "unclutter", "-idle", "5", NULL, */
-    /* "volumeicon", NULL, */
+	"setxkbmap", "-option", "ctrl:nocaps", NULL,
+    "nm-applet", NULL,
+    "greenclip", "daemon", NULL,
+    "unclutter", "-idle", "5", NULL,
+    "volumeicon", NULL,
     "sxhkd", NULL,
-    /* "lxpolkit", NULL, */
-    /* "lxsession", NULL, */
-    /* "dunst", NULL, */
-    /* "udiskie", NULL, */
-    /* "picom", NULL, */
+    "lxpolkit", NULL,
+    "lxsession", NULL,
+    "dunst", NULL,
+    "udiskie", NULL,
+    "picom", NULL,
     "slstatus", NULL,
 	NULL /* terminate */
 };
@@ -65,6 +65,7 @@ static const Rule rules[] = {
 	{ NULL,                                   NULL,                       "scratchpad",       0,            1,           -1,       's' },
 	{ NULL,                                   NULL,                     "musicmanager",       0,            1,           -1,       'm' },
 	{ NULL,                                   NULL,                        "quickedit",       0,            1,           -1,       'e' },
+	{ NULL,                                   NULL,                      "filemanager",       0,            1,           -1,       'f' },
 };
 
 /* layout(s) */
@@ -96,6 +97,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 static const char *scratchpadcmd[] = {"s", "st", "-t", "scratchpad", "-e", "scratchpad", NULL};
 static const char *musicmanager[]  = {"m", "st", "-t", "musicmanager", "-e", "ncmpcpp"};
+static const char *filemanager[]  =  {"f", "st", "-t", "filemanager", "-e", "ranger"};
 static const char *quickedit[]     = {"e", "st", "-t", "quickedit", "-e", "nvim"};
 
 #include "focusurgent.c"
@@ -108,6 +110,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY|ShiftMask,             XK_m,      togglescratch,  {.v = musicmanager } },
+	{ MODKEY|ShiftMask,             XK_f,      togglescratch,  {.v = filemanager } },
 	{ MODKEY|ShiftMask,             XK_e,      togglescratch,  {.v = quickedit } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -118,7 +121,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
-	{ MODKEY,                       XK_Return, zoom,           {0} },
+	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_apostrophe,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
