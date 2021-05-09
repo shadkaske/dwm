@@ -34,9 +34,10 @@ static const char *const autostart[] = {
     "sxhkd", NULL,
     "lxpolkit", NULL,
     "lxsession", NULL,
-    "dunst", NULL,
+    "dunst", "-config", "~/.config/dunst/dunstrc", NULL,
     "udiskie", NULL,
     "picom", NULL,
+    "mate-power-manager", NULL,
     "wmname", "LG3D", NULL,
     "slstatus", NULL,
 	NULL /* terminate */
@@ -95,11 +96,11 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "st", NULL };
-static const char *scratchpadcmd[] = {"s", "st", "-t", "scratchpad", "-e", "scratchpad", NULL};
-static const char *musicmanager[]  = {"m", "st", "-t", "musicmanager", "-e", "ncmpcpp"};
-static const char *filemanager[]  =  {"f", "st", "-t", "filemanager", "-e", "ranger"};
-static const char *quickedit[]     = {"e", "st", "-t", "quickedit", "-e", "nvim"};
+static const char *termcmd[]  = { "alacritty", NULL };
+static const char *scratchpadcmd[] = {"s", "alacritty", "-t", "scratchpad", "-e", "scratchpad", NULL};
+static const char *musicmanager[]  = {"m", "alacritty", "-t", "musicmanager", "-e", "ncmpcpp"};
+static const char *filemanager[]  =  {"f", "alacritty", "-t", "filemanager", "-e", "ranger"};
+static const char *quickedit[]     = {"e", "alacritty", "-t", "quickedit", "-e", "nvim"};
 
 #include "focusurgent.c"
 #include "movestack.c"
