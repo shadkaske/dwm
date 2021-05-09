@@ -8,6 +8,7 @@ static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows sel
 static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray        = 1;     /* 0 means no systray */
+static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int focusonwheel       = 0;
@@ -39,10 +40,12 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor    scratch key */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1,        0  },
-	{ "firefox",  NULL,       NULL,       1 << 8,       0,           -1,        0  },
-	{ NULL,       NULL,   "scratchpad",   0,            1,           -1,       's' },
+	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor scratchkey */
+	{ "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1      0  },
+	{ "Firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1      0  },
+	{ "St",      NULL,     NULL,           0,         0,          1,           0,        -1      0  },
+	{ NULL,       NULL,   "scratchpad",    0,         1,         -1,           0,        -1,    's' },
+	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1      0  }, /* xev */
 };
 
 /* layout(s) */
