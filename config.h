@@ -8,6 +8,7 @@ static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows sel
 static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray        = 1;     /* 0 means no systray */
+static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int focusonwheel       = 0;
@@ -37,39 +38,39 @@ static const char *const autostart[] = {
     "dunst", "-config", "~/.config/dunst/dunstrc", NULL,
     "udiskie", NULL,
     "picom", NULL,
+    "mate-power-manager", NULL,
     "wmname", "LG3D", NULL,
     "slstatus", NULL,
 	NULL /* terminate */
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-static const char *tagsalt[] = { "", "", "", "", "", "", "", "", "" };
+static const char *tagsalt[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "", "", "", "", "", "", "", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class                                  instance                            title       tags mask     isfloating   monitor    scratch key */
-	{ "Gimp",                                 NULL,                               NULL,       0,            1,           -1,        0  },
-	{ "Arandr",                               NULL,                               NULL,       0,            1,           -1,        0  },
-	{ NULL,                                   NULL,          "Virtual Machine Manager",       0,            1,           -1,        0  },
-	{ NULL,                                   NULL,                         "printApp",       1 << 4,       0,           -1,        0  },
-	{ NULL,                                   NULL,    "Remmina Remote Desktop Client",       0,            1,           -1,        0  },
-	{ NULL,                         "virt-manager",            "Windows10 on QEMU/KVM",       1 << 7,       0,           -1,        0  },
-	{ NULL,    "showplacecabinetry-team.monday.com__boards_1284644165",           NULL,       1 << 1,       0,           -1,        0  },
-	{ NULL,                   "outlook.office.com",                               NULL,       1 << 3,       0,           -1,        0  },
-	{ "qutebrowser",                          NULL,                               NULL,       1 << 2,       0,           -1,        0  },
-	{ "DBeaver",                              NULL,                               NULL,       1 << 6,       0,            1,        0  },
-	{ "libreoffice-calc",                     NULL,                               NULL,       1 << 6,       0,            0,        0  },
-	{ "firefox",                              NULL,                               NULL,       1 << 1,       0,           -1,        0  },
-	{ "Emacs",                                NULL,                               NULL,       1 << 3,       0,           -1,        0  },
-	{ "teams-for-linux",                      NULL,                               NULL,       1 << 3,       0,            1,        0  },
-	{ NULL,                                   NULL,                       "scratchpad",       0,            1,           -1,       's' },
-	{ NULL,                                   NULL,                     "musicmanager",       0,            1,           -1,       'm' },
-	{ NULL,                                   NULL,                        "quickedit",       0,            1,           -1,       'e' },
-	{ NULL,                                   NULL,                      "filemanager",       0,            1,           -1,       'f' },
+	/* class                                  instance                            title       tags mask     isfloating   isterminal  noswallow monitor    scratch key */
+	{ "Gimp",                                 NULL,                               NULL,       0,            1,           0,          0,        -1,        0  },
+	{ "Arandr",                               NULL,                               NULL,       0,            1,           0,          0,        -1,        0  },
+	{ NULL,                                   NULL,          "Virtual Machine Manager",       0,            1,           0,          0,        -1,        0  },
+	{ NULL,                                   NULL,    "Remmina Remote Desktop Client",       0,            1,           0,          0,        -1,        0  },
+	{ NULL,                         "virt-manager",            "Windows10 on QEMU/KVM",       1 << 7,       0,           0,          0,        -1,        0  },
+	{ "qutebrowser",                          NULL,                               NULL,       1 << 2,       0,           0,          0,        -1,        0  },
+	{ "DBeaver",                              NULL,                               NULL,       1 << 6,       0,           0,          0,         1,        0  },
+	{ "Google-chrome",                        NULL,                               NULL,       1 << 2,       0,           0,          0,        -1,        0  },
+	{ "firefox",                              NULL,                               NULL,       1 << 1,       0,           0,         -1,        -1,        0  },
+	{ "Emacs",                                NULL,                               NULL,       1 << 3,       0,           0,          0,        -1,        0  },
+	{ "teams-for-linux",                      NULL,                               NULL,       1 << 3,       0,           0,          0,         1,        0  },
+	{ "St",                                   NULL,                               NULL,       0,            0,           1,          0,        -1,        0  },
+	{ "Alacritty",                            NULL,                               NULL,       0,            0,           1,          0,        -1,        0  },
+	{ NULL,                                   NULL,                       "scratchpad",       0,            1,           0,          0,        -1,       's' },
+	{ NULL,                                   NULL,                     "musicmanager",       0,            1,           0,          0,        -1,       'm' },
+	{ NULL,                                   NULL,                        "quickedit",       0,            1,           0,          0,        -1,       'e' },
+	{ NULL,                                   NULL,                      "filemanager",       0,            1,           0,          0,        -1,       'f' },
 };
 
 /* layout(s) */
@@ -98,11 +99,11 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "st", NULL };
-static const char *scratchpadcmd[] = {"s", "st", "-t", "scratchpad", "-e", "scratchpad", NULL};
-static const char *musicmanager[]  = {"m", "st", "-t", "musicmanager", "-e", "ncmpcpp"};
-static const char *filemanager[]  =  {"f", "st", "-t", "filemanager", "-e", "ranger"};
-static const char *quickedit[]     = {"e", "st", "-t", "quickedit", "-e", "nvim"};
+static const char *termcmd[]  = { "alacritty", NULL };
+static const char *scratchpadcmd[] = {"s", "alacritty", "-t", "scratchpad", "-e", "scratchpad", NULL};
+static const char *musicmanager[]  = {"m", "alacritty", "-t", "musicmanager", "-e", "ncmpcpp"};
+static const char *filemanager[]  =  {"f", "alacritty", "-t", "filemanager", "-e", "ranger"};
+static const char *quickedit[]     = {"e", "alacritty", "-t", "quickedit", "-e", "nvim"};
 
 #include "focusurgent.c"
 #include "movestack.c"
