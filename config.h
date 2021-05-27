@@ -31,7 +31,7 @@ static const char *const autostart[] = {
     "nm-applet", NULL,
     "greenclip", "daemon", NULL,
     "unclutter", "-idle", "5", NULL,
-    "volumeicon", NULL,
+    /* "volumeicon", NULL, */
     "sxhkd", NULL,
     "lxpolkit", NULL,
     "lxsession", NULL,
@@ -40,7 +40,8 @@ static const char *const autostart[] = {
     "picom", NULL,
     "mate-power-manager", NULL,
     "wmname", "LG3D", NULL,
-    "slstatus", NULL,
+    /* "slstatus", NULL, */
+    "dwmblocks", NULL,
 	NULL /* terminate */
 };
 
